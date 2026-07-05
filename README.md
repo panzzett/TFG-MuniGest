@@ -1,6 +1,6 @@
-# MuniGest
+# TFG-Prototipo de plataforma de tramitación de expedientes electrónicos para Administraciones Locales.
 
-Prototipo de plataforma de tramitación de expedientes electrónicos para Administraciones Locales.
+MuniGest: Prototipo de plataforma de tramitación de expedientes electrónicos para Administraciones Locales.
 
 > **Este proyecto ha sido desarrollado como parte del Trabajo Fin de Grado en Ingeniería Informática de la Universidad Internacional de La Rioja (UNIR).**
 
