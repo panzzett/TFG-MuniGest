@@ -1,0 +1,46 @@
+<!--
+  Trabajo Fin de Grado en Ingenieria Informatica
+  Universidad Internacional de La Rioja (UNIR)
+  Prototipo de software de tramitacion de expedientes electronicos
+  para administraciones locales
+  Autor: Carlos Galvez Reguera
+  Ano: 2026
+
+  Este archivo forma parte de este proyecto, desarrollado como
+  Trabajo Fin de Grado en Ingenieria Informatica de la UNIR.
+
+  Licencia: MIT
+-->
+<template id="tpl-consulta">
+  <section class="card" aria-labelledby="titulo-consulta">
+    <h2 id="titulo-consulta">Consulta de expedientes</h2>
+    <p class="muted">Busca por ID o por referencia. Crea uno nuevo o sube documentos a uno existente.</p>
+
+    <form id="form-buscar" class="form form-buscar" role="search" novalidate>
+      <label>ID
+        <input type="number" min="1" name="id" id="bus-id" placeholder="Ej. 12" />
+      </label>
+      <label>Referencia
+        <input type="search" name="q" id="bus-ref" placeholder="Texto contenido en la referencia" />
+      </label>
+      <div class="acciones">
+        <button type="submit" class="btn primario">Buscar</button>
+        <button type="button" class="btn" id="btn-limpiar">Limpiar</button>
+        <a class="btn" href="#expedientes/nuevo">Nuevo expediente</a>
+      </div>
+    </form>
+
+    <div class="ruta-dir" aria-hidden="true">
+      <span class="ico ico-home"></span>
+      <span>Mis expedientes</span>
+      <span class="contador" id="contador-dir"></span>
+    </div>
+
+    <ul class="directorio" id="lista-dir" aria-label="Lista de expedientes">
+      <li class="vacio-dir muted">
+        <span class="spin" aria-hidden="true"></span>Cargando...
+      </li>
+    </ul>
+    <p class="error" id="err-listado" role="alert" aria-live="assertive"></p>
+  </section>
+</template>

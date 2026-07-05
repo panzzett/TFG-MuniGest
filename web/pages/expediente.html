@@ -1,0 +1,131 @@
+<!--
+  Trabajo Fin de Grado en Ingenieria Informatica
+  Universidad Internacional de La Rioja (UNIR)
+  Prototipo de software de tramitacion de expedientes electronicos
+  para administraciones locales
+  Autor: Carlos Galvez Reguera
+  Ano: 2026
+
+  Este archivo forma parte de este proyecto, desarrollado como
+  Trabajo Fin de Grado en Ingenieria Informatica de la UNIR.
+
+  Licencia: MIT
+-->
+<template id="tpl-expediente">
+  <section class="card" aria-labelledby="titulo-exp">
+    <div class="cab-exp">
+      <h2 id="titulo-exp">Expediente</h2>
+      <span id="badge-estado" class="badge"></span>
+    </div>
+    <p class="muted" id="subtitulo-exp"></p>
+
+    <div id="aviso-autofirma" class="aviso oculto" role="alert"></div>
+
+    <form id="form-exp" class="form" novalidate aria-label="Datos del expediente">
+      <div class="grid-2">
+        <label>ID
+          <input type="text" id="exp-id" readonly aria-readonly="true" />
+        </label>
+        <label>Fecha de creacion
+          <input type="text" id="exp-fecha" readonly aria-readonly="true" />
+        </label>
+      </div>
+
+      <label>Referencia (asunto)
+        <input type="text" id="exp-ref" name="referencia"
+               maxlength="200" required aria-required="true"
+               placeholder="Asunto breve del expediente" />
+      </label>
+
+      <label>Descripcion
+        <textarea id="exp-desc" name="descripcion" rows="5"
+                  maxlength="5000"
+                  placeholder="Detalles que no caben en la referencia..."></textarea>
+      </label>
+
+      <fieldset class="fieldset-pasos">
+        <legend>Pasos administrativos</legend>
+        <div class="pasos-selector">
+          <button type="button" id="btn-pasos" class="btn"
+                  aria-haspopup="listbox" aria-expanded="false"
+                  aria-controls="lista-pasos">
+            <span id="pasos-resumen">Selecciona los pasos...</span>
+            <span class="tema-flecha" aria-hidden="true"></span>
+          </button>
+          <ul id="lista-pasos" class="menu menu-pasos oculto"
+              role="listbox" aria-multiselectable="true"
+              aria-label="Pasos administrativos">
+            <li class="muted" id="pasos-cargando" role="presentation">Cargando...</li>
+          </ul>
+        </div>
+        <p class="muted" id="aviso-guardar-pasos" style="margin:.6rem 0 0">
+          Cada paso tendra su propia seccion para subir los documentos
+          necesarios. Los documentos solo se pueden anadir despues de
+          guardar el expediente.
+        </p>
+        <div id="pasos-secciones" class="pasos-secciones" aria-live="polite"></div>
+      </fieldset>
+
+      <div class="acciones">
+        <button type="submit" class="btn primario" id="btn-guardar">Guardar</button>
+        <a class="btn" href="#expedientes" id="btn-volver">Volver</a>
+        <button type="button" class="btn btn-peligro oculto" id="btn-borrar">Eliminar expediente</button>
+      </div>
+      <p class="info" id="info-exp" role="status" aria-live="polite"></p>
+      <p class="error" id="err-exp" role="alert" aria-live="assertive"></p>
+    </form>
+
+    <!-- Adjuntos (solo cuando ya existe el expediente) -->
+    <div id="zona-adjuntos" class="oculto">
+      <hr class="sep" />
+      <h3>Documentos adjuntos</h3>
+      <p class="muted">Sube archivos PDF o DOCX. Los DOCX se convierten automaticamente a PDF.</p>
+
+      <form id="form-adjunto" class="form">
+        <label class="dropzone" for="input-adjunto">
+          <input id="input-adjunto" type="file" name="archivo"
+                 accept="application/pdf,.pdf,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+          <span>Arrastra aqui un PDF o DOCX (o haz clic)</span>
+          <span class="archivo-elegido" id="adj-elegido" aria-live="polite"></span>
+        </label>
+        <div class="acciones">
+          <button type="submit" class="btn" id="btn-subir-adj">Subir adjunto</button>
+        </div>
+        <p class="info" id="info-adj" role="status" aria-live="polite"></p>
+        <p class="error" id="err-adj" role="alert" aria-live="assertive"></p>
+      </form>
+
+      <ul class="lista-adjuntos" id="lista-adjuntos" aria-label="Documentos adjuntos"></ul>
+    </div>
+
+    <!-- PDF / firma -->
+    <div id="zona-firma" class="oculto">
+      <hr class="sep" />
+      <h3>Generacion y firma</h3>
+
+      <div class="acciones">
+        <button type="button" class="btn primario" id="btn-generar">Generar PDF del expediente</button>
+        <a class="btn oculto" id="btn-ver-pdf" target="_blank" rel="noopener">Ver PDF generado</a>
+      </div>
+
+      <div id="zona-firmar" class="oculto">
+        <label class="oculto">Certificado digital
+          <select id="sel-cert"><option value=""></option></select>
+        </label>
+        <p class="muted" id="aviso-cert" aria-live="polite"></p>
+        <div class="acciones">
+          <button type="button" class="btn primario" id="btn-firmar">Firmar con AutoFirma</button>
+        </div>
+      </div>
+
+      <div id="bloque-firmado" class="resultado oculto" tabindex="-1">
+        <h3>Expediente firmado</h3>
+        <p>Este expediente ha sido firmado electronicamente y ya no puede modificarse ni eliminarse.</p>
+        <a class="btn primario" id="btn-ver-firmado" target="_blank" rel="noopener">Ver PDF firmado</a>
+      </div>
+
+      <p class="info" id="info-firma" role="status" aria-live="polite"></p>
+      <p class="error" id="err-firma" role="alert" aria-live="assertive"></p>
+    </div>
+  </section>
+</template>

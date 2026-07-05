@@ -1,0 +1,7 @@
+flask>=3.0
+bcrypt>=4.0
+fpdf2>=2.7
+# Conversion DOCX->PDF (uno u otro):
+#   docx2pdf usa Microsoft Word (Windows/Mac).
+#   Como alternativa, instalar LibreOffice y se usara su CLI.
+docx2pdf>=0.1.8 ; sys_platform == "win32"

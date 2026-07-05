@@ -1,3 +1,9 @@
+# Datos de la aplicacion (expedientes, usuarios y PDFs de prueba/runtime)
+/data/
+
+# Ejecutable generado con PyInstaller
+*.exe
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

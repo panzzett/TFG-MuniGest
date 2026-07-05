@@ -1,0 +1,51 @@
+<!doctype html>
+<!--
+  Trabajo Fin de Grado en Ingenieria Informatica
+  Universidad Internacional de La Rioja (UNIR)
+  Prototipo de software de tramitacion de expedientes electronicos
+  para administraciones locales
+  Autor: Carlos Galvez Reguera
+  Ano: 2026
+
+  Este archivo forma parte de este proyecto, desarrollado como
+  Trabajo Fin de Grado en Ingenieria Informatica de la UNIR.
+
+  Licencia: MIT
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fbf8f1" />
+  <title>Gestion de expedientes</title>
+  <script>
+    (function () {
+      try {
+        var t = (localStorage.getItem('tema') || '').toLowerCase();
+        if (t === 'claro' || t === 'oscuro') {
+          document.documentElement.setAttribute('data-tema', t);
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/base.css" />
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+  <div id="app" role="application" aria-label="Gestion de expedientes"></div>
+
+  <!--#include file="partials/login.html" -->
+  <!--#include file="partials/header.html" -->
+  <!--#include file="pages/inicio.html" -->
+  <!--#include file="pages/expediente.html" -->
+  <!--#include file="pages/documentos.html" -->
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/tema.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/expedientes.js"></script>
+  <script src="/js/documentos.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

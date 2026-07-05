@@ -1,0 +1,87 @@
+<!--
+  Trabajo Fin de Grado en Ingenieria Informatica
+  Universidad Internacional de La Rioja (UNIR)
+  Prototipo de software de tramitacion de expedientes electronicos
+  para administraciones locales
+  Autor: Carlos Galvez Reguera
+  Ano: 2026
+
+  Este archivo forma parte de este proyecto, desarrollado como
+  Trabajo Fin de Grado en Ingenieria Informatica de la UNIR.
+
+  Licencia: MIT
+-->
+<template id="tpl-login">
+  <main id="contenido">
+    <section class="card login" aria-labelledby="titulo-login">
+      <div class="tema-selector tema-login">
+        <button id="btn-tema" type="button" class="btn btn-icono"
+                aria-haspopup="menu" aria-expanded="false"
+                aria-controls="menu-tema"
+                aria-label="Cambiar tema">
+          <span class="tema-icono" aria-hidden="true"></span>
+          <span class="tema-etq" id="tema-etq">Sistema</span>
+          <span class="tema-flecha" aria-hidden="true"></span>
+        </button>
+        <ul id="menu-tema" class="menu oculto" role="menu" aria-labelledby="btn-tema">
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false"
+              class="menu-item" data-tema-opcion="sistema">
+            <span class="ico ico-sistema" aria-hidden="true"></span>Predeterminado del sistema
+          </button></li>
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false"
+              class="menu-item" data-tema-opcion="claro">
+            <span class="ico ico-claro" aria-hidden="true"></span>Modo claro
+          </button></li>
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false"
+              class="menu-item" data-tema-opcion="oscuro">
+            <span class="ico ico-oscuro" aria-hidden="true"></span>Modo oscuro
+          </button></li>
+        </ul>
+      </div>
+      <h1 id="titulo-login">Gestion de expedientes</h1>
+      <p class="muted">Inicia sesion para crear, consultar y firmar expedientes.</p>
+
+      <div class="tabs" role="tablist" aria-label="Acceso o registro">
+        <button type="button" class="tab" id="tab-login"
+                role="tab" aria-selected="true"
+                aria-controls="form-login" data-tab="login">Entrar</button>
+        <button type="button" class="tab" id="tab-registro"
+                role="tab" aria-selected="false"
+                aria-controls="form-registro" data-tab="registro">Crear cuenta</button>
+      </div>
+
+      <form id="form-login" class="form"
+            role="tabpanel" aria-labelledby="tab-login" novalidate>
+        <label>Usuario
+          <input type="text" name="usuario" autocomplete="username"
+                 required aria-required="true" autofocus />
+        </label>
+        <label>Contrasena
+          <input type="password" name="password" autocomplete="current-password"
+                 required aria-required="true" aria-describedby="err-login" />
+        </label>
+        <div class="acciones">
+          <button type="submit" class="btn primario">Entrar</button>
+        </div>
+        <p class="error" id="err-login" role="alert" aria-live="assertive"></p>
+      </form>
+
+      <form id="form-registro" class="form oculto"
+            role="tabpanel" aria-labelledby="tab-registro" novalidate>
+        <label>Usuario nuevo
+          <input type="text" name="usuario" minlength="3" maxlength="32"
+                 autocomplete="username" required aria-required="true" />
+        </label>
+        <label>Contrasena (minimo 6 caracteres)
+          <input type="password" name="password" minlength="6"
+                 autocomplete="new-password" required aria-required="true"
+                 aria-describedby="err-registro" />
+        </label>
+        <div class="acciones">
+          <button type="submit" class="btn primario">Crear cuenta</button>
+        </div>
+        <p class="error" id="err-registro" role="alert" aria-live="assertive"></p>
+      </form>
+    </section>
+  </main>
+</template>

@@ -1,0 +1,76 @@
+<!--
+  Trabajo Fin de Grado en Ingenieria Informatica
+  Universidad Internacional de La Rioja (UNIR)
+  Prototipo de software de tramitacion de expedientes electronicos
+  para administraciones locales
+  Autor: Carlos Galvez Reguera
+  Ano: 2026
+
+  Este archivo forma parte de este proyecto, desarrollado como
+  Trabajo Fin de Grado en Ingenieria Informatica de la UNIR.
+
+  Licencia: MIT
+-->
+<template id="tpl-documentos">
+  <section class="card" aria-labelledby="titulo-docs">
+    <h2 id="titulo-docs">Firmar documento</h2>
+    <p class="muted">Sube un PDF o DOCX y firmalo con AutoFirma. Los DOCX se convierten automaticamente a PDF.</p>
+
+    <div id="aviso-autofirma" class="aviso oculto" role="alert"></div>
+
+    <form id="form-doc" class="form" novalidate aria-label="Subir documento">
+      <label class="dropzone" for="input-doc">
+        <input id="input-doc" type="file" name="archivo"
+               accept="application/pdf,.pdf,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+               required aria-required="true" />
+        <span>Arrastra aqui un PDF o DOCX (o haz clic)</span>
+        <span class="archivo-elegido" id="doc-elegido" aria-live="polite"></span>
+      </label>
+      <div class="acciones">
+        <button type="submit" class="btn primario" id="btn-subir-doc">Subir documento</button>
+      </div>
+      <p class="info" id="info-doc" role="status" aria-live="polite"></p>
+      <p class="error" id="err-doc" role="alert" aria-live="assertive"></p>
+    </form>
+
+    <hr class="sep" />
+
+    <h3>Mis documentos</h3>
+    <div class="tabla-envoltura">
+      <table class="tabla">
+        <caption class="sr-only">Documentos subidos</caption>
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Fecha</th>
+            <th scope="col"><span class="sr-only">Acciones</span></th>
+          </tr>
+        </thead>
+        <tbody id="tb-docs">
+          <tr><td colspan="4" class="muted"><span class="spin" aria-hidden="true"></span>Cargando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="error" id="err-listado-docs" role="alert" aria-live="assertive"></p>
+
+    <!-- Dialogo / panel de firma -->
+    <div id="zona-firmar-doc" class="oculto" tabindex="-1">
+      <hr class="sep" />
+      <h3 id="firmar-doc-titulo">Firmar documento</h3>
+      <p class="muted" id="firmar-doc-nombre"></p>
+      <div class="form">
+        <label class="oculto">Certificado digital
+          <select id="sel-cert-doc"><option value=""></option></select>
+        </label>
+        <p class="muted" id="aviso-cert-doc" aria-live="polite"></p>
+        <div class="acciones">
+          <button type="button" class="btn primario" id="btn-firmar-doc">Firmar con AutoFirma</button>
+          <button type="button" class="btn" id="btn-cancelar-firma-doc">Cancelar</button>
+        </div>
+        <p class="info" id="info-firma-doc" role="status" aria-live="polite"></p>
+        <p class="error" id="err-firma-doc" role="alert" aria-live="assertive"></p>
+      </div>
+    </div>
+  </section>
+</template>

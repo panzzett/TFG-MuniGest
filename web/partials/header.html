@@ -1,0 +1,52 @@
+<!--
+  Trabajo Fin de Grado en Ingenieria Informatica
+  Universidad Internacional de La Rioja (UNIR)
+  Prototipo de software de tramitacion de expedientes electronicos
+  para administraciones locales
+  Autor: Carlos Galvez Reguera
+  Ano: 2026
+
+  Este archivo forma parte de este proyecto, desarrollado como
+  Trabajo Fin de Grado en Ingenieria Informatica de la UNIR.
+
+  Licencia: MIT
+-->
+<template id="tpl-header">
+  <header class="cabecera" role="banner">
+    <a href="#expedientes" class="marca" aria-label="Gestion de expedientes, ir al inicio">Expedientes</a>
+    <nav class="nav" aria-label="Navegacion principal">
+      <a href="#expedientes" data-ruta="expedientes">Consulta</a>
+      <a href="#expedientes/nuevo" data-ruta="expedientes/nuevo">Nuevo expediente</a>
+      <a href="#documentos" data-ruta="documentos">Firmar documento</a>
+    </nav>
+    <div class="usuario">
+      <div class="tema-selector">
+        <button id="btn-tema" type="button" class="btn btn-icono"
+                aria-haspopup="menu" aria-expanded="false"
+                aria-controls="menu-tema"
+                aria-label="Cambiar tema">
+          <span class="tema-icono" aria-hidden="true"></span>
+          <span class="tema-etq" id="tema-etq">Sistema</span>
+          <span class="tema-flecha" aria-hidden="true"></span>
+        </button>
+        <ul id="menu-tema" class="menu oculto" role="menu" aria-labelledby="btn-tema">
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false"
+              class="menu-item" data-tema-opcion="sistema">
+            <span class="ico ico-sistema" aria-hidden="true"></span>Predeterminado del sistema
+          </button></li>
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false"
+              class="menu-item" data-tema-opcion="claro">
+            <span class="ico ico-claro" aria-hidden="true"></span>Modo claro
+          </button></li>
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false"
+              class="menu-item" data-tema-opcion="oscuro">
+            <span class="ico ico-oscuro" aria-hidden="true"></span>Modo oscuro
+          </button></li>
+        </ul>
+      </div>
+      <span id="lbl-usuario" aria-label="Usuario actual"></span>
+      <button id="btn-logout" type="button" class="btn"
+              aria-label="Cerrar sesion">Salir</button>
+    </div>
+  </header>
+</template>
